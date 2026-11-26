@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
 import { Footer } from '@/components/layout/Footer';
 import { LoadingScreen } from '@/components/layout/LoadingScreen';
@@ -17,11 +17,26 @@ import { Projects } from '@/components/sections/Projects';
 import { Services } from '@/components/sections/Services';
 import { Skills } from '@/components/sections/Skills';
 
+function isBlogsRoute(): boolean {
+  return window.location.pathname.replace(/\/+$/, '') === '/blogs' || window.location.hash === '#blogs';
+}
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isBlogsPage, setIsBlogsPage] = useState(isBlogsRoute);
   const finishLoading = useCallback(() => setIsLoading(false), []);
 
-  if (window.location.pathname.replace(/\/+$/, '') === '/blogs') {
+  useEffect(() => {
+    const updateRoute = () => setIsBlogsPage(isBlogsRoute());
+    window.addEventListener('hashchange', updateRoute);
+    window.addEventListener('popstate', updateRoute);
+    return () => {
+      window.removeEventListener('hashchange', updateRoute);
+      window.removeEventListener('popstate', updateRoute);
+    };
+  }, []);
+
+  if (isBlogsPage) {
     return (
       <MotionConfig reducedMotion="user">
         <ScrollProgress />

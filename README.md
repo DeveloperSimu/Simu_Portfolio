@@ -96,7 +96,7 @@ It represents a professional digital identity — showcasing projects, technical
 
 ### ⬡ Technical Publishing System
 
-- Dedicated `/blogs` archive.
+- Dedicated `/#blogs` archive.
 - 11 curated technical articles.
 - Category and topic filtering.
 - Article cover photography.
@@ -297,7 +297,7 @@ Execute the migrations in timestamp order through the Supabase SQL Editor.
 3. Insert a new article.
 4. Provide title, unique slug, excerpt, category, tags and body.
 5. Set `published` to `true`.
-6. Refresh the `/blogs` page.
+6. Refresh the `/#blogs` page.
 
 Curated blog content is maintained in:
 
@@ -322,6 +322,8 @@ src/data/blogPosts.ts
 ## ◈ 08 — PRODUCTION DEPLOYMENT
 
 The application can be deployed through a static hosting provider.
+
+The **Explore all blogs** link uses `/#blogs`, so it works on static hosts without a rewrite rule. Direct `/blogs` URLs require an SPA fallback.
 
 ### Deployment Workflow
 
@@ -353,7 +355,7 @@ LIVE PORTFOLIO
 - [ ] Apply all Supabase migrations.
 - [ ] Execute `npm run build`.
 - [ ] Deploy the generated `dist/` directory.
-- [ ] Configure SPA fallback for `/blogs`.
+- [ ] Verify the blog archive at `/#blogs`.
 - [ ] Verify database connectivity.
 - [ ] Test contact and newsletter forms.
 - [ ] Check desktop and mobile responsiveness.

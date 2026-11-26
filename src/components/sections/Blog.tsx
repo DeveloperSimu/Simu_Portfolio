@@ -137,7 +137,7 @@ export function Blog() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <a href="/blogs" className={buttonStyles('secondary')}>
+          <a href="/#blogs" className={buttonStyles('secondary')}>
             Explore all blogs
             <ArrowUpRight className="h-4 w-4" aria-hidden />
           </a>
